@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @new_trivium.content %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @new_trivium.title %>
+</p>
+
+<%= link_to 'Edit', edit_new_trivium_path(@new_trivium) %> |
+<%= link_to 'Back', new_trivia_path %>

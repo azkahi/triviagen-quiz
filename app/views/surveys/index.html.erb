@@ -6,12 +6,16 @@
     <hr>
     <% if @surveys.empty? %>
       <p> There are no surveys </p>
-    <% else %>
+    <% end %>
       <p>
-        Filter by type:
-        <%= render 'survey_label_all' %>
-        <%= render partial: 'survey_label', collection: get_survey_types.keys, as: :survey_type, locals: { with_badges: true } %>
+        <%= render 'survey_label_all' %> <br /> <br />
+        Filter by category:
+        <%= form_tag(surveys_path, method: "get") do %>
+          <%= select_tag :category, options_from_collection_for_select(Category.select(:category).uniq, :category, :category, :selected => :category) %>
+          <%= submit_tag 'Go', class: 'btn btn-primary' %>
+        <% end %>
       </p>
+    <% if !@surveys.empty? %>
       <table class='table table-nonfluid survey-table'>
         <thead>
           <tr>

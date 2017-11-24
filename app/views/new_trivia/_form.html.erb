@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="flash">
+    <h1>New Trivia</h1>
+    <%= form_for(@new_trivium) do |f| %>
+  <% if @new_trivium.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@new_trivium.errors.count, "error") %> prohibited this new_trivium from being saved:</h2>
+
+      <ul>
+      <% @new_trivium.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <div class="field">
+      <%= f.label :title %><br>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :content %><br>
+    <%= f.text_area :content, class: 'form-control' %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Submit', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+  </div>
+</div>

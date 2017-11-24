@@ -11,9 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150515173554) do
+ActiveRecord::Schema.define(version: 20171123112439) do
 
-  create_table "openie", id: false, force: :cascade do |t|
+  create_table "categories", id: false, force: :cascade do |t|
+    t.integer "id",       limit: 4
+    t.string  "article",  limit: 37
+    t.string  "category", limit: 29
+  end
+
+  create_table "new_trivia", force: :cascade do |t|
+    t.text     "content",    limit: 65535
+    t.text     "title",      limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "openies", id: false, force: :cascade do |t|
     t.integer "id_article", limit: 4
     t.string  "article",    limit: 37
     t.string  "entity1",    limit: 163
@@ -40,8 +53,8 @@ ActiveRecord::Schema.define(version: 20150515173554) do
 
   create_table "survey_options", force: :cascade do |t|
     t.integer  "question_id", limit: 4
-    t.integer  "weight",      limit: 4,   default: 0
-    t.string   "text",        limit: 255
+    t.integer  "weight",      limit: 4,    default: 0
+    t.string   "text",        limit: 1024
     t.boolean  "correct",     limit: 1
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -49,17 +62,17 @@ ActiveRecord::Schema.define(version: 20150515173554) do
 
   create_table "survey_questions", force: :cascade do |t|
     t.integer  "survey_id",  limit: 4
-    t.string   "text",       limit: 255
+    t.string   "text",       limit: 1024
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "survey_surveys", force: :cascade do |t|
-    t.string   "name",            limit: 255
-    t.text     "description",     limit: 65535
-    t.integer  "attempts_number", limit: 4,     default: 0
-    t.boolean  "finished",        limit: 1,     default: false
-    t.boolean  "active",          limit: 1,     default: false
+    t.string   "name",            limit: 1024
+    t.string   "description",     limit: 1024
+    t.integer  "attempts_number", limit: 4,    default: 0
+    t.boolean  "finished",        limit: 1,    default: false
+    t.boolean  "active",          limit: 1,    default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "survey_type",     limit: 4
